@@ -6,9 +6,8 @@ public class Main extends JFrame {
 
     private Timer timer; //Declare to timer
 
-    private JPanel mainPanel;
-    private ButtonPanel buttonPanel;
-    private ArrayPanel arrayPanel;
+    private MainPanel mainPanel;
+
 
     public Main() {
         //Set up the frame properties
@@ -16,16 +15,7 @@ public class Main extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Behavior on close, exits the program when the frame is closed
         setResizable(false); //sets the frame to a fixed size, not resizeable by a user
 
-        mainPanel = new JPanel();
-        mainPanel.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Constants.ACCENT_COLOR)); //Add a border around the frame
-        mainPanel.setBackground(Constants.ACCENT_COLOR); //Set the background color of the panel
-        mainPanel.setLayout(new BorderLayout(10, 10)); //Sets the edge offset of member panels to properly space them
-
-        buttonPanel = new ButtonPanel(this);
-        arrayPanel = new ArrayPanel();
-
-        mainPanel.add(arrayPanel);
-        mainPanel.add(buttonPanel, BorderLayout.SOUTH);
+        mainPanel = new MainPanel(this);
         add(mainPanel);
         pack();
 
@@ -35,7 +25,7 @@ public class Main extends JFrame {
         timer = new Timer(Constants.LOOP_TIME, new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-
+                        mainPanel.run();
 
                     }
                 }

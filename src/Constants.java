@@ -10,7 +10,7 @@ public class Constants {
 
     public static final double BAR_SPACE_RATIO = 2;
 
-    public static final int ARRAY_LENGTH = 10;
+    public static final int ARRAY_LENGTH = 100;
 
 
     public static final Color BACKGROUND_COLOR = new Color((int)0x212121); //The color used as the background for most panels
