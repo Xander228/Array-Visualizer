@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 
 public class ButtonPanel extends JPanel {
-    ButtonPanel(JFrame frame){
+    ButtonPanel(MainFrame frame){
         setPreferredSize(new Dimension(Constants.BOARD_WIDTH, Constants.BUTTON_HEIGHT));
         setBorder(BorderFactory.createMatteBorder(25, 50, 25, 50, Constants.BACKGROUND_COLOR));
         setLayout(new BorderLayout(200, 0));
@@ -27,21 +27,21 @@ public class ButtonPanel extends JPanel {
 
         start.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-
+                frame.start();
             }
         });
 
         JButton stop = new GameButton("Stop");
         stop.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+                frame.stop();
             }
         });
 
         JButton shuffle = new GameButton("Shuffle");
         shuffle.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+                frame.shuffle();
             }
         });
 

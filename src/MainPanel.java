@@ -13,12 +13,12 @@ public class MainPanel extends JPanel{
 
 
     private PanelStates panelState;
-    private JFrame frame;
+    private MainFrame frame;
     private ButtonPanel buttonPanel;
     private ArrayPanel arrayPanel;
     private int[] array;
 
-    MainPanel(JFrame frame) {
+    MainPanel(MainFrame frame) {
         this.frame = frame;
         this.panelState = PanelStates.SHUFFLE_PHASE;
         setBorder(BorderFactory.createMatteBorder(10,10,10,10,Constants.ACCENT_COLOR)); //Add a border around the frame
@@ -57,5 +57,17 @@ public class MainPanel extends JPanel{
 
                 break;
         }
+    }
+
+    public void setPhaseStart(){
+        panelState = PanelStates.SORT_PHASE;
+    }
+
+    public void setPhaseStop(){
+        panelState = PanelStates.IDLE_PHASE;
+    }
+
+    public void setPhaseShuffle(){
+        panelState = PanelStates.SHUFFLE_PHASE;
     }
 }

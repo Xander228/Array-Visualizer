@@ -2,14 +2,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Main extends JFrame {
+public class MainFrame extends JFrame {
 
     private Timer timer; //Declare to timer
 
     private MainPanel mainPanel;
 
 
-    public Main() {
+    public MainFrame() {
         //Set up the frame properties
         setTitle("Sort"); //Title of the frame
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Behavior on close, exits the program when the frame is closed
@@ -41,11 +41,23 @@ public class Main extends JFrame {
         setVisible(true);
     }
 
+    public void start(){
+        mainPanel.setPhaseStart();
+    }
+
+    public void stop(){
+        mainPanel.setPhaseStop();
+    }
+
+    public void shuffle(){
+        mainPanel.setPhaseShuffle();
+    }
+
 
     public static void main(String[] args){
         EventQueue.invokeLater(new Runnable(){
             public void run(){
-                new Main();
+                new MainFrame();
             }
         });
     }
