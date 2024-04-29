@@ -12,6 +12,7 @@ public class MainPanel extends JPanel{
     }
 
 
+    private Sort sort;
     private PanelStates panelState;
     private MainFrame frame;
     private ButtonPanel buttonPanel;
@@ -48,8 +49,8 @@ public class MainPanel extends JPanel{
                 break;
 
             case SORT_PHASE:
-
-
+                sort.run(array);
+                arrayPanel.repaint();
                 break;
 
             case IDLE_PHASE:
@@ -60,6 +61,7 @@ public class MainPanel extends JPanel{
     }
 
     public void setPhaseStart(){
+        sort = new BubbleSort();
         panelState = PanelStates.SORT_PHASE;
     }
 

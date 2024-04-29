@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+import static javax.swing.SwingUtilities.invokeAndWait;
+
 public class MainFrame extends JFrame {
 
     private Timer timer; //Declare to timer
@@ -26,6 +28,7 @@ public class MainFrame extends JFrame {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         mainPanel.run();
+                        
 
                     }
                 }

@@ -1,8 +1,3 @@
-public class Sort {
-    public static void run(int[] array){
-
-
-
-
-    }
+public interface Sort {
+    public boolean run(int[] arr);
 }
