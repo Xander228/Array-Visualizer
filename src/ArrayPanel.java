@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
 
 
 public class ArrayPanel extends JPanel {
@@ -14,7 +13,7 @@ public class ArrayPanel extends JPanel {
         setPreferredSize(new Dimension(Constants.BOARD_WIDTH, Constants.BOARD_HEIGHT));
         setBackground(Constants.BACKGROUND_COLOR);
         array = new int[Constants.ARRAY_LENGTH];
-        for (int x = 0; x < Constants.ARRAY_LENGTH; x++) array[x] = x;
+        for (int x = 0; x < Constants.ARRAY_LENGTH; x++) array[x] = x + 1;
         repaint();
     }
 
@@ -32,11 +31,10 @@ public class ArrayPanel extends JPanel {
         double heightRatio = (Constants.BOARD_HEIGHT - (2.0 * Constants.BOARD_BORDER_WIDTH)) / maxValue;
         g.setColor(Constants.PRIMARY_COLOR);
         for(int x = 0; x < arrayLength; x++) {
-            int barHeight = array[x] * heightRatio;
-            System.out.println((Constants.BOARD_BORDER_WIDTH + (x * spaceWidth * (1 + Constants.BAR_SPACE_RATIO))));
+            double barHeight = array[x] * heightRatio;
             Rectangle2D rect = new Rectangle2D.Double(
                     (Constants.BOARD_BORDER_WIDTH + (x * spaceWidth * (1 + Constants.BAR_SPACE_RATIO))),
-                    Constants.BOARD_HEIGHT - barHeight,
+                    Constants.BOARD_HEIGHT - barHeight - Constants.BOARD_BORDER_WIDTH,
                     (spaceWidth * Constants.BAR_SPACE_RATIO),
                     barHeight);
             g2.fill(rect);
