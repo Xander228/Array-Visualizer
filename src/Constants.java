@@ -5,7 +5,12 @@ public class Constants {
 
     public static final int BOARD_WIDTH = 800; //The visible width of the board, in pixels
     public static final int BOARD_HEIGHT = 400; //The visible width of the board, in pixels
+    public static final int BOARD_BORDER_WIDTH = 15;
     public static final int BUTTON_HEIGHT = 100; //The visible width of the board, in pixels
+
+    public static final double BAR_SPACE_RATIO = 2;
+
+    public static final int ARRAY_LENGTH = 10;
 
 
     public static final Color BACKGROUND_COLOR = new Color((int)0x212121); //The color used as the background for most panels

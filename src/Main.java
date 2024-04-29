@@ -17,8 +17,8 @@ public class Main extends JFrame {
         setResizable(false); //sets the frame to a fixed size, not resizeable by a user
 
         mainPanel = new JPanel();
-        mainPanel.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Constants.PRIMARY_COLOR)); //Add a border around the frame
-        mainPanel.setBackground(Constants.PRIMARY_COLOR); //Set the background color of the panel
+        mainPanel.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Constants.ACCENT_COLOR)); //Add a border around the frame
+        mainPanel.setBackground(Constants.ACCENT_COLOR); //Set the background color of the panel
         mainPanel.setLayout(new BorderLayout(10, 10)); //Sets the edge offset of member panels to properly space them
 
         buttonPanel = new ButtonPanel(this);
