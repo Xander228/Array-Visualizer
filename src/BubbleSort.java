@@ -1,6 +1,6 @@
-public class BubbleSortII {
+public class BubbleSort {
 
-    public static void run(){
+    public static void sort(){
         int[] arr = ArrayPanel.array;
         boolean sorted = false;
         while (ArrayPanel.panelState == Constants.PanelStates.SORT_PHASE)
@@ -15,10 +15,11 @@ public class BubbleSortII {
                 }
                 if (ArrayPanel.panelState != Constants.PanelStates.SORT_PHASE) return;
                 try {
-                    Thread.sleep(1);
+                    Util.sleepNanos(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-                catch (Exception e) {
-                }
+
             }
             if (sorted) ArrayPanel.panelState = Constants.PanelStates.IDLE_PHASE;
         }

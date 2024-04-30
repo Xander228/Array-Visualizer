@@ -17,7 +17,7 @@ public class ArrayPanel extends JPanel {
 
         this.panelState = Constants.PanelStates.SHUFFLE_PHASE;
         array = new int[Constants.ARRAY_LENGTH];
-        for (int x = 0; x < Constants.ARRAY_LENGTH; x++) array[x] = x + 1;
+        for (int x = 0; x < Constants.ARRAY_LENGTH; x++) array[x] = Constants.ARRAY_LENGTH - x;
 
         timer = new Timer(Constants.DISPLAY_LOOP_TIME, new ActionListener() {
             @Override
