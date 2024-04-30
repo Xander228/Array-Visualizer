@@ -6,14 +6,27 @@ import java.awt.geom.Rectangle2D;
 
 public class ArrayPanel extends JPanel {
 
+    private Timer timer;
     private JPanel subPanel;
-    private int[] array;
+    public static int[] array;
+    public static Constants.PanelStates panelState;
 
-    ArrayPanel(int[] array) {
-        this.array = array;
+    ArrayPanel() {
         setPreferredSize(new Dimension(Constants.BOARD_WIDTH, Constants.BOARD_HEIGHT));
         setBackground(Constants.BACKGROUND_COLOR);
-        repaint();
+
+        this.panelState = Constants.PanelStates.SHUFFLE_PHASE;
+        array = new int[Constants.ARRAY_LENGTH];
+        for (int x = 0; x < Constants.ARRAY_LENGTH; x++) array[x] = x + 1;
+
+        timer = new Timer(Constants.DISPLAY_LOOP_TIME, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                repaint();
+            }
+        });
+
+        timer.start();
     }
 
     public void drawArray(Graphics g){

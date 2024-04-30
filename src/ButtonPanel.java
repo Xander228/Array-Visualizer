@@ -27,24 +27,25 @@ public class ButtonPanel extends JPanel {
 
         start.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                frame.start();
+                ArrayPanel.panelState = Constants.PanelStates.SORT_PHASE;
+                new Thread(BubbleSortII::run).start();
             }
         });
 
         JButton stop = new GameButton("Stop");
         stop.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                frame.stop();
+                ArrayPanel.panelState = Constants.PanelStates.IDLE_PHASE;
             }
         });
 
         JButton shuffle = new GameButton("Shuffle");
         shuffle.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                frame.shuffle();
+                ArrayPanel.panelState = Constants.PanelStates.SHUFFLE_PHASE;
+                new Thread(Shuffle::run).start();
             }
         });
-
 
         add(start, BorderLayout.WEST);
         add(stop);
