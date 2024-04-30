@@ -1,23 +1,24 @@
 public class MergeSort {
-    int i;
-    boolean sorted;
+    static int i;
+    static boolean sorted;
 
-    MergeSort(){
+    static int[] arr;
+
+
+    public static void sort() {
+        arr = ArrayPanel.array;
         i = 0;
         sorted = false;
-    }
-    public boolean run(int[] arr){
-
-        return false;
-    }
-
-    public void sort(int[] arr)
-    {
         sort(arr, 0, arr.length - 1);
     }
 
-    public void sort(int[] arr, int startIndex, int endIndex)
+    public static void sort(int[] arr, int startIndex, int endIndex)
     {
+        try {
+            Thread.sleep(1);
+        }
+        catch (Exception e) {
+        }
         if ((endIndex - startIndex) < 2)
         {
             if (arr[startIndex] > arr[endIndex])
@@ -48,6 +49,11 @@ public class MergeSort {
                 indexB++;
             }
             auxIndex++;
+            try {
+                Thread.sleep(1);
+            }
+            catch (Exception e) {
+            }
         }
         if (indexA <= midPoint) while (auxIndex < auxArray.length)
         {
@@ -60,10 +66,20 @@ public class MergeSort {
             auxArray[auxIndex] = arr[indexB];
             indexB++;
             auxIndex++;
+            try {
+                Thread.sleep(1);
+            }
+            catch (Exception e) {
+            }
         }
         for (int i = 0; i < auxArray.length; i++)
         {
             arr[startIndex + i] = auxArray[i];
+            try {
+                Thread.sleep(1);
+            }
+            catch (Exception e) {
+            }
         }
         return;
     }

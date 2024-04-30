@@ -14,7 +14,7 @@ public class Constants {
 
     public static final double BAR_SPACE_RATIO = 2;
 
-    public static final int ARRAY_LENGTH = 50;
+    public static final int ARRAY_LENGTH = 1000;
 
     public static enum PanelStates {
         SHUFFLE_PHASE (),

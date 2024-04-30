@@ -28,7 +28,7 @@ public class ButtonPanel extends JPanel {
         start.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 ArrayPanel.panelState = Constants.PanelStates.SORT_PHASE;
-                new Thread(BubbleSortII::run).start();
+                new Thread(QuickSort::sort).start();
             }
         });
 
