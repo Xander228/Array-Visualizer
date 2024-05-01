@@ -5,6 +5,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 
 public class ButtonPanel extends JPanel {
+    private Thread sortThread;
+
+
     ButtonPanel(MainFrame frame){
         setPreferredSize(new Dimension(Constants.BOARD_WIDTH, Constants.BUTTON_HEIGHT));
         setBorder(BorderFactory.createMatteBorder(25, 50, 25, 50, Constants.BACKGROUND_COLOR));
@@ -28,9 +31,9 @@ public class ButtonPanel extends JPanel {
         start.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 ArrayPanel.panelState = Constants.PanelStates.SORT_PHASE;
-                Thread t = new Thread(BubbleSort::sort);
-                t.start();
-                t.interrupt();
+                if(sortThread != null) sortThread.interrupt();
+                sortThread = new Thread(QuickSort::sort);
+                sortThread.start();
             }
         });
 
@@ -38,14 +41,18 @@ public class ButtonPanel extends JPanel {
         stop.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 ArrayPanel.panelState = Constants.PanelStates.IDLE_PHASE;
+                if(sortThread != null) sortThread.interrupt();
             }
         });
 
         JButton shuffle = new GameButton("Shuffle");
         shuffle.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
+                for (int x = 0; x < Constants.ARRAY_LENGTH; x++) ArrayPanel.array[x] = Constants.ARRAY_LENGTH - x;
                 ArrayPanel.panelState = Constants.PanelStates.SHUFFLE_PHASE;
-                new Thread(Shuffle::run).start();
+                if(sortThread != null) sortThread.interrupt();
+                sortThread = new Thread(Shuffle::run);
+                sortThread.start();
             }
         });
 

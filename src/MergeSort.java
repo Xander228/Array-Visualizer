@@ -15,9 +15,10 @@ public class MergeSort {
     public static void sort(int[] arr, int startIndex, int endIndex)
     {
         try {
-            Thread.sleep(1);
-        }
-        catch (Exception e) {
+            Util.sleepNanos(Constants.SORT_SLEEP);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            return;
         }
         if ((endIndex - startIndex) < 2)
         {
@@ -50,9 +51,10 @@ public class MergeSort {
             }
             auxIndex++;
             try {
-                Thread.sleep(1);
-            }
-            catch (Exception e) {
+                Util.sleepNanos(Constants.SORT_SLEEP);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                return;
             }
         }
         if (indexA <= midPoint) while (auxIndex < auxArray.length)
@@ -67,18 +69,20 @@ public class MergeSort {
             indexB++;
             auxIndex++;
             try {
-                Thread.sleep(1);
-            }
-            catch (Exception e) {
+                Util.sleepNanos(Constants.SORT_SLEEP);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                return;
             }
         }
         for (int i = 0; i < auxArray.length; i++)
         {
             arr[startIndex + i] = auxArray[i];
             try {
-                Thread.sleep(1);
-            }
-            catch (Exception e) {
+                Util.sleepNanos(Constants.SORT_SLEEP);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                return;
             }
         }
         return;

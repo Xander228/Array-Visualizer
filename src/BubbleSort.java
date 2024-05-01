@@ -15,7 +15,7 @@ public class BubbleSort {
                 }
                 if (ArrayPanel.panelState != Constants.PanelStates.SORT_PHASE) return;
                 try {
-                    Util.sleepNanos(1000);
+                    Util.sleepNanos(Constants.SORT_SLEEP);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                     return;

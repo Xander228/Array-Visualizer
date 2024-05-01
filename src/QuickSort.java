@@ -29,9 +29,10 @@ public class QuickSort
                 arr[indexA] = temp;
             } else indexA++;
             try {
-                Thread.sleep(1);
-            }
-            catch (Exception e) {
+                Util.sleepNanos(Constants.SORT_SLEEP);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                return;
             }
         }
 
