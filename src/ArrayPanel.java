@@ -20,6 +20,8 @@ public class ArrayPanel extends JPanel {
 
         this.panelState = Constants.PanelStates.SHUFFLE_PHASE;
         array = new int[Constants.ARRAY_LENGTH];
+        lastArray = new int[Constants.ARRAY_LENGTH];
+        swapedIndexes = new int[Constants.ARRAY_LENGTH];
         for (int x = 0; x < Constants.ARRAY_LENGTH; x++) array[x] = Constants.ARRAY_LENGTH - x;
 
         timer = new Timer(Constants.DISPLAY_LOOP_TIME, new ActionListener() {
@@ -33,9 +35,7 @@ public class ArrayPanel extends JPanel {
     }
 
     public void drawArray(Graphics g){
-        for(int x = 0; x < Constants.ARRAY_LENGTH; x++){
-            if(lastArray[x] != array[x]) swapedIndexes[x] = Constants.HIGHLIGHT_LOOP_TIME;
-        }
+        for(int x = 0; x < Constants.ARRAY_LENGTH; x++) if(lastArray[x] != array[x]) swapedIndexes[x] = Constants.HIGHLIGHT_LOOP_TIME;
 
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_PURE);
@@ -48,6 +48,8 @@ public class ArrayPanel extends JPanel {
         double heightRatio = (Constants.BOARD_HEIGHT - (2.0 * Constants.BOARD_BORDER_WIDTH)) / maxValue;
         g.setColor(Constants.PRIMARY_COLOR);
         for(int x = 0; x < array.length; x++) {
+            g.setColor((swapedIndexes[x] >= 0) ? Constants.SELECTED_COLOR : Constants.PRIMARY_COLOR);
+            if(swapedIndexes[x] >= 0) swapedIndexes[x]--;
             double barHeight = array[x] * heightRatio;
             Rectangle2D rect = new Rectangle2D.Double(
                     (Constants.BOARD_BORDER_WIDTH + (x * spaceWidth * (1 + Constants.BAR_SPACE_RATIO))),
@@ -56,7 +58,7 @@ public class ArrayPanel extends JPanel {
                     barHeight);
             g2.fill(rect);
         }
-        lastArray =  array;
+        lastArray = array.clone();
     }
 
     @Override
