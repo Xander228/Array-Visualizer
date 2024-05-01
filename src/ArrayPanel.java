@@ -47,7 +47,7 @@ public class ArrayPanel extends JPanel {
         double heightRatio = (Constants.BOARD_HEIGHT - (2.0 * Constants.BOARD_BORDER_WIDTH)) / maxValue;
         g.setColor(Constants.PRIMARY_COLOR);
         for(int x = 0; x < array.length; x++) {
-            g.setColor((swapedIndexes[x] >= 0) ? Constants.SELECTED_COLOR : Constants.PRIMARY_COLOR);
+            g.setColor((wasWritten[x]) ? Constants.SELECTED_COLOR : Constants.PRIMARY_COLOR);
             if(swapedIndexes[x] >= 0) swapedIndexes[x]--;
             double barHeight = array.getSilently(x) * heightRatio;
             Rectangle2D rect = new Rectangle2D.Double(
