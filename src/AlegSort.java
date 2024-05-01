@@ -2,7 +2,7 @@ public class AlegSort
 {
 
     public static void sort(){
-        sort(ArrayPanel.array);
+        //sort(ArrayPanel.array);
 
     }
     public static void sort(int[] arr)

@@ -22,6 +22,11 @@ public class MonitoredArray {
         array[index] = value;
     }
 
+    public int get(int index){
+        wasRead[index] = true;
+        return array[index];
+    }
+
     public int getSilently(int index){
         return array[index];
     }

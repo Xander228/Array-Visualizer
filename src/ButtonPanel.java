@@ -32,7 +32,7 @@ public class ButtonPanel extends JPanel {
             public void actionPerformed(ActionEvent e){
                 ArrayPanel.panelState = Constants.PanelStates.SORT_PHASE;
                 if(sortThread != null) sortThread.interrupt();
-                sortThread = new Thread(QuickSort::sort);
+                sortThread = new Thread(BubbleSort::sort);
                 sortThread.start();
             }
         });
@@ -48,7 +48,7 @@ public class ButtonPanel extends JPanel {
         JButton shuffle = new GameButton("Shuffle");
         shuffle.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                for (int x = 0; x < Constants.ARRAY_LENGTH; x++) ArrayPanel.array[x] = Constants.ARRAY_LENGTH - x;
+                ArrayPanel.resetArray();
                 ArrayPanel.panelState = Constants.PanelStates.SHUFFLE_PHASE;
                 if(sortThread != null) sortThread.interrupt();
                 sortThread = new Thread(Shuffle::run);

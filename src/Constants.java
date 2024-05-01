@@ -2,12 +2,12 @@ import java.awt.*;
 
 public class Constants {
 
-    public static final int DISPLAY_LOOPS_PER_SECOND = 100;
+    public static final int DISPLAY_LOOPS_PER_SECOND = 60;
     public static final int DISPLAY_LOOP_TIME = 1000 / DISPLAY_LOOPS_PER_SECOND;
-    public static final int HIGHLIGHT_TIME = 50;
+    public static final int HIGHLIGHT_TIME = DISPLAY_LOOP_TIME;
     public static final int HIGHLIGHT_LOOP_TIME = HIGHLIGHT_TIME / DISPLAY_LOOP_TIME;
 
-    public static final int SORT_SLEEP = 50000000;
+    public static final int SORT_SLEEP = 1000000;
 
     public static final int BOARD_WIDTH = 800; //The visible width of the board, in pixels
     public static final int BOARD_HEIGHT = 400; //The visible width of the board, in pixels

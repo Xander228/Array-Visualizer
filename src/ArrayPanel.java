@@ -41,7 +41,7 @@ public class ArrayPanel extends JPanel {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         int maxValue = 0;
-        for(int x = 0; x < array.length; x++) maxValue = Math.max(maxValue, value);
+        for(int x = 0; x < array.length; x++) maxValue = Math.max(maxValue, array.getSilently(x));
 
         double spaceWidth = (Constants.BOARD_WIDTH - (2.0 * Constants.BOARD_BORDER_WIDTH)) / (Constants.BAR_SPACE_RATIO * array.length + array.length - 1);
         double heightRatio = (Constants.BOARD_HEIGHT - (2.0 * Constants.BOARD_BORDER_WIDTH)) / maxValue;
@@ -49,7 +49,7 @@ public class ArrayPanel extends JPanel {
         for(int x = 0; x < array.length; x++) {
             g.setColor((swapedIndexes[x] >= 0) ? Constants.SELECTED_COLOR : Constants.PRIMARY_COLOR);
             if(swapedIndexes[x] >= 0) swapedIndexes[x]--;
-            double barHeight = array[x] * heightRatio;
+            double barHeight = array.getSilently(x) * heightRatio;
             Rectangle2D rect = new Rectangle2D.Double(
                     (Constants.BOARD_BORDER_WIDTH + (x * spaceWidth * (1 + Constants.BAR_SPACE_RATIO))),
                     Constants.BOARD_HEIGHT - barHeight - Constants.BOARD_BORDER_WIDTH,
@@ -59,6 +59,10 @@ public class ArrayPanel extends JPanel {
         }
     }
 
+    public static void resetArray(){
+        array = new MonitoredArray(Constants.ARRAY_LENGTH);
+        for (int x = 0; x < Constants.ARRAY_LENGTH; x++) array.set(x, Constants.ARRAY_LENGTH - x);
+    }
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

@@ -6,7 +6,7 @@ public class MergeSort {
 
 
     public static void sort() {
-        arr = ArrayPanel.array;
+        //arr = ArrayPanel.array;
         i = 0;
         sorted = false;
         sort(arr, 0, arr.length - 1);

@@ -4,7 +4,7 @@ public class QuickSort
     static int[] arr;
     static public void sort()
     {
-        arr = ArrayPanel.array;
+        //arr = ArrayPanel.array;
         sort(arr, 0, arr.length - 1);
     }
 
