@@ -8,8 +8,7 @@ import java.util.HashMap;
 public class ArrayPanel extends JPanel {
 
     private Timer timer;
-    public static volatile int[] array;
-    private int[] lastArray;
+    public static volatile MonitoredArray array;
     private int[] swapedIndexes;
     public static volatile Constants.PanelStates panelState;
 
@@ -18,11 +17,10 @@ public class ArrayPanel extends JPanel {
         setPreferredSize(new Dimension(Constants.BOARD_WIDTH, Constants.BOARD_HEIGHT));
         setBackground(Constants.BACKGROUND_COLOR);
 
-        this.panelState = Constants.PanelStates.SHUFFLE_PHASE;
-        array = new int[Constants.ARRAY_LENGTH];
-        lastArray = new int[Constants.ARRAY_LENGTH];
+        panelState = Constants.PanelStates.SHUFFLE_PHASE;
+        array = new MonitoredArray(Constants.ARRAY_LENGTH);
         swapedIndexes = new int[Constants.ARRAY_LENGTH];
-        for (int x = 0; x < Constants.ARRAY_LENGTH; x++) array[x] = Constants.ARRAY_LENGTH - x;
+        for (int x = 0; x < Constants.ARRAY_LENGTH; x++) array.set(x, Constants.ARRAY_LENGTH - x);
 
         timer = new Timer(Constants.DISPLAY_LOOP_TIME, new ActionListener() {
             @Override
@@ -35,14 +33,15 @@ public class ArrayPanel extends JPanel {
     }
 
     public void drawArray(Graphics g){
-        for(int x = 0; x < Constants.ARRAY_LENGTH; x++) if(lastArray[x] != array[x]) swapedIndexes[x] = Constants.HIGHLIGHT_LOOP_TIME;
+        boolean[] wasWritten = array.getWasWritten();
+        for(int x = 0; x < Constants.ARRAY_LENGTH; x++) if(wasWritten[x]) swapedIndexes[x] = Constants.HIGHLIGHT_LOOP_TIME;
 
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_PURE);
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         int maxValue = 0;
-        for(int value : array) maxValue = Math.max(maxValue, value);
+        for(int x = 0; x < array.length; x++) maxValue = Math.max(maxValue, value);
 
         double spaceWidth = (Constants.BOARD_WIDTH - (2.0 * Constants.BOARD_BORDER_WIDTH)) / (Constants.BAR_SPACE_RATIO * array.length + array.length - 1);
         double heightRatio = (Constants.BOARD_HEIGHT - (2.0 * Constants.BOARD_BORDER_WIDTH)) / maxValue;
@@ -58,7 +57,6 @@ public class ArrayPanel extends JPanel {
                     barHeight);
             g2.fill(rect);
         }
-        lastArray = array.clone();
     }
 
     @Override
