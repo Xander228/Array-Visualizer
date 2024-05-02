@@ -7,7 +7,7 @@ public class Constants {
     public static final int HIGHLIGHT_TIME = DISPLAY_LOOP_TIME;
     public static final int HIGHLIGHT_LOOP_TIME = HIGHLIGHT_TIME / DISPLAY_LOOP_TIME;
 
-    public static final int SORT_SLEEP = 1000000;
+    public static final int SORT_SLEEP = 10000000;
 
     public static final int BOARD_WIDTH = 800; //The visible width of the board, in pixels
     public static final int BOARD_HEIGHT = 400; //The visible width of the board, in pixels
@@ -16,7 +16,7 @@ public class Constants {
 
     public static final double BAR_SPACE_RATIO = 2;
 
-    public static final int ARRAY_LENGTH = 200;
+    public static final int ARRAY_LENGTH = 100;
 
     public static enum PanelStates {
         SHUFFLE_PHASE (),
@@ -30,7 +30,8 @@ public class Constants {
     public static final Color BACKGROUND_COLOR = new Color((int)0x212121); //The color used as the background for most panels
     public static final  Color PRIMARY_COLOR = new Color((int)0x555555); //The color used to for headers and text for most panels
     public static final  Color ACCENT_COLOR = new Color((int)0x373737); //The color used to accent the headers and text for some panels
-    public static final  Color SELECTED_COLOR = new Color((int)0xFF3737); //The color used to accent the headers and text for some panels
+    public static final  Color WRITTEN_COLOR = new Color((int)0xFF3737); //The color used to accent the headers and text for some panels
+    public static final  Color READ_COLOR = new Color((int)0x37FF37);
 }
 
 
