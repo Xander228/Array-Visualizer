@@ -2,17 +2,17 @@ public class MergeSort {
     static int i;
     static boolean sorted;
 
-    static int[] arr;
+    static MonitoredArray arr;
 
 
     public static void sort() {
-        //arr = ArrayPanel.array;
+        arr = ArrayPanel.array;
         i = 0;
         sorted = false;
         sort(arr, 0, arr.length - 1);
     }
 
-    public static void sort(int[] arr, int startIndex, int endIndex)
+    public static void sort(MonitoredArray arr, int startIndex, int endIndex)
     {
         try {
             Util.sleepNanos(Constants.SORT_SLEEP);
@@ -22,11 +22,11 @@ public class MergeSort {
         }
         if ((endIndex - startIndex) < 2)
         {
-            if (arr[startIndex] > arr[endIndex])
+            if (arr.get(startIndex) > arr.get(endIndex))
             {
-                int temp = arr[startIndex];
-                arr[startIndex] = arr[endIndex];
-                arr[endIndex] = temp;
+                int temp = arr.get(startIndex);
+                arr.set(startIndex, arr.get(endIndex));
+                arr.set(endIndex, temp);
             }
             return;
         }
@@ -41,12 +41,12 @@ public class MergeSort {
         int[] auxArray = new int[endIndex + 1 - startIndex];
         while (indexA <= midPoint && indexB <= endIndex)
         {
-            if (arr[indexA] < arr[indexB]) {
-                auxArray[auxIndex] = arr[indexA];
+            if (arr.get(indexA) < arr.get(indexB)) {
+                auxArray[auxIndex] = arr.get(indexA);
                 indexA++;
             } else
             {
-                auxArray[auxIndex] = arr[indexB];
+                auxArray[auxIndex] = arr.get(indexB);
                 indexB++;
             }
             auxIndex++;
@@ -59,13 +59,13 @@ public class MergeSort {
         }
         if (indexA <= midPoint) while (auxIndex < auxArray.length)
         {
-            auxArray[auxIndex] = arr[indexA];
+            auxArray[auxIndex] = arr.get(indexA);
             indexA++;
             auxIndex++;
         }
         else while (auxIndex < auxArray.length)
         {
-            auxArray[auxIndex] = arr[indexB];
+            auxArray[auxIndex] = arr.get(indexB);
             indexB++;
             auxIndex++;
             try {
@@ -77,7 +77,7 @@ public class MergeSort {
         }
         for (int i = 0; i < auxArray.length; i++)
         {
-            arr[startIndex + i] = auxArray[i];
+            arr.set(startIndex + i, auxArray[i]);
             try {
                 Util.sleepNanos(Constants.SORT_SLEEP);
             } catch (InterruptedException e) {

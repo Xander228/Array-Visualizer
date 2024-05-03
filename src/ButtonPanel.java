@@ -1,3 +1,4 @@
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -32,7 +33,7 @@ public class ButtonPanel extends JPanel {
             public void actionPerformed(ActionEvent e){
                 ArrayPanel.panelState = Constants.PanelStates.SORT_PHASE;
                 if(sortThread != null) sortThread.interrupt();
-                sortThread = new Thread(BubbleSort::sort);
+                sortThread = new Thread(QuickSort::sort);
                 sortThread.start();
             }
         });
@@ -42,6 +43,7 @@ public class ButtonPanel extends JPanel {
             public void actionPerformed(ActionEvent e){
                 ArrayPanel.panelState = Constants.PanelStates.IDLE_PHASE;
                 if(sortThread != null) sortThread.interrupt();
+
             }
         });
 
